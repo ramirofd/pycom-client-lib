@@ -1,0 +1,20 @@
+[project]
+name = "pycom-client-library"
+version = "0.0.4"
+authors = [
+  { name="Ramiro Detke", email="ramirof.detke@unc.edu.ar" },
+  { name="Matias Raya", email="matias.raya@mi.unc.edu.ar" },
+]
+description = "Library for implementing clients that connect with REST APIs on Pycom Boards "
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/ramirofd/pycom-client-lib"
+"Bug Tracker" = "https://github.com/ramirofd/pycom-client-lib/issues"
+"Server Library" = "https://github.com/ramirofd/pycom-server-lib"

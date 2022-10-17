@@ -15,4 +15,20 @@ ToDo
 
 ## Extra
 *** Docs used to deploy python package ***
+
 https://packaging.python.org/en/latest/tutorials/packaging-projects/
+
+To build:
+~~~
+py -m build
+~~~
+
+To push package (test):
+~~~
+py -m twine upload --repository testpypi dist/*
+~~~
+
+To push package (production) WARNING!!!:
+~~~
+py -m twine upload dist/*
+~~~
