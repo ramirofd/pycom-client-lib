@@ -57,3 +57,8 @@ class PycomNode:
                             print(f'\t* {argument}: {data["arguments"][argument]}')
                     print(f'  Example: <device>.{method_name}({params_usage})\n')
 
+class SimplePycomParser:
+
+    @classmethod
+    def get_value(cls, data:dict=None):
+        return data.get('value', None)
