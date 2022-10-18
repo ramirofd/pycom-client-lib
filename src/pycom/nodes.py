@@ -1,6 +1,20 @@
+from copy import deepcopy
+
 import requests
 import json
 
+
+def create_function(method, base_url, path, data):
+    def funct(**kwargs):
+        method_name = f'{method.lower()}_{path[1:]}'
+        for argument in data['arguments'].keys():
+            if argument not in kwargs.keys():
+                raise Exception(f'Required {argument} on {method_name} method.')
+        request_funct = getattr(requests, method.lower())
+        response = request_funct(base_url + path)
+        return json.loads(response.text)
+
+    return funct
 
 class PycomNode:
 
@@ -15,10 +29,13 @@ class PycomNode:
 
     def initialize(self):
         self.endpoints = json.loads(requests.get(f'{self.base_url()}/help').text)
-        self.endpoints['GET']['/temperature']['arguments'] = {
-            'hora': 'int - hora de algo.'
-        }
-        #ToDo: Create methods dynamically
+
+        for method in self.endpoints.keys():
+            for path in self.endpoints[method].keys():
+                if 'help' not in path:
+                    data = deepcopy(self.endpoints[method][path])
+                    method_name = f'{method.lower()}_{path[1:]}'
+                    self.__dict__[method_name] = create_function(method, self.base_url(), path, data)
 
     def help(self):
         if self.endpoints is None:
