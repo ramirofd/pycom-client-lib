@@ -1,6 +1,6 @@
 [project]
 name = "pycom-client-library"
-version = "0.0.6"
+version = "0.0.7"
 authors = [
   { name="Ramiro Detke", email="ramirof.detke@unc.edu.ar" },
   { name="Matias Raya", email="matias.raya@mi.unc.edu.ar" },
