@@ -5,6 +5,7 @@ from typing import List
 from zeroconf import ServiceBrowser, ServiceListener, Zeroconf
 
 from .nodes import PycomNode
+from .nodes import SimplePycomNode
 
 
 def find_pycom_nodes(timeout: int = 10, service_name: str = 'pycom_edu_api') -> List[PycomNode]:
@@ -35,6 +36,14 @@ def find_pycom_nodes(timeout: int = 10, service_name: str = 'pycom_edu_api') -> 
         print(f'Found {len(devices)} device/s.')
         zeroconf.close()
         return devices
+
+
+def find_simple_pycom_nodes(timeout: int = 10, service_name: str = 'pycom_edu_api') -> List[SimplePycomNode]:
+    devices = find_pycom_nodes(timeout, service_name)
+    simples = []
+    for dev in devices:
+        simples.append(SimplePycomNode(dev))
+    return simples
 
 
 class ImproperlyConfigured(Exception):
